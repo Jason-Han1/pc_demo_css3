@@ -1,0 +1,1012 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JasonHan</title>
+    <style>
+        /*css reset start*/
+        html,body{height: 100%;overflow: hidden;}
+        html,body,h1,h2,h3,h4,h5,h6,p,ul,li{margin: 0;padding: 0;font: 14px "微软雅黑";}
+        a{text-decoration: none;display: block;}
+        li{list-style: none;}
+        img{display: block;}
+        /*css reset end*/
+        /*common css start*/
+        .clearfix{*zoom: 1;}
+        .clearfix:after{content: "";display: block;clear: both;}
+        .commonTitle{ color:#009ee0; font-size:80px; line-height:0.8;
+            font-weight:bold; letter-spacing:-5px;
+        }
+        .commonText{color: white;line-height: 1.5; font-size:15px;}
+        #content .list, #content .list>li{overflow: hidden;}
+        /*common css end*/
+        /*头部布局开始*/
+        #warp>.head .headMain{width: 1100px; height: 80px;margin: 0 auto;position: relative;}
+        #warp>.head .headMain>.logo{margin-top: 30px; float: left;}
+        #warp>.head .headMain>.nav{margin-top: 50px;float: right}
+        #warp>.head .headMain>.nav>.list>li{float: left; position: relative;margin-left: 40px;}
+        #warp>.head .headMain>.nav>.list>li .up{position: absolute;color: black;width: 0;overflow: hidden;transition: 1s width;}
+        #warp>.head .headMain>.nav>.list>li:hover .up{width: 100%;}
+        #warp>.head .headMain>.arrow{width: 21px;height: 11px;background: url("img/menuIndicator.png");position: absolute;left: 50%;bottom: -11px;transition: 1s left;}
+        /*头部布局结束*/
+        /*内容区样式开始*/
+        /*#warp>#content{height: 300px;background: palegreen;}*/
+        #content{position: relative; overflow: hidden;width: 100%;}
+        #content .list{position: absolute;left: 0;top: 0;right: 0;bottom: 0;transition: 1s top;}
+        #content .list>li{overflow: hidden; position: relative;background-position: 50% 50%!important;}
+        #content .list>li>section{width: 1100px;height: 520px;position: absolute;left: 0;right: 0;bottom: 0;top: 0;margin: auto;}
+        /*第一屏开始*/
+        #content .list > .home{background: url(img/bg1.jpg) no-repeat;}
+        #content .list > .home .home1{width: 100%;height: 100%;perspective: 1000px;transform-style: preserve-3d;}
+        #content .list > .home .home1 li{position: absolute;top: 0;left: 0;bottom: 0;right: 0; visibility: hidden;}
+        #content > .list > .home .home1 > li:nth-child(1){background:#dc6c5f;}
+        #content > .list > .home .home1 > li:nth-child(2){background:#95dc84;}
+        #content > .list > .home .home1 > li:nth-child(3){background:#64b9d2;}
+        #content > .list > .home .home1 > li:nth-child(4){background:#000000;}
+        #content .list > .home .home1 li >div{color: white;margin-top: 200px;text-align: center;}
+        #content .list > .home .home1 li.active{visibility: visible;}
+        #content .list > .home .home2{position: absolute;left: 0; right: 0; bottom: 0; text-align: center;}
+        #content .list > .home .home2 li{ display: inline-block;border-radius: 50%; width: 20px; height: 20px; box-shadow: 0 0 4px rgba(25,25,25,0.8); cursor: pointer;}
+        #content .list > .home .home2 li.active{background: white; cursor: default;}
+        #content > .list > .home .home1 > li.leftHide{visibility: hidden;animation:1s leftHide 1 linear;}
+        #content > .list > .home .home1 > li.rightShow{visibility: visible;animation:1s rightShow 1 linear;}
+        @keyframes leftHide{
+            0%{visibility: visible;}
+            50%{transform: translateX(-40%) rotateY(30deg) scale(.8);}
+            100%{transform: translateZ(-200px);}
+        }
+        @keyframes rightShow{
+            0%{visibility: hidden;transform: translateZ(-200px);}
+            50%{transform: translateX(40%) rotateY(-30deg) scale(.8);}
+            100%{}
+        }
+        /*从右往左 leftShow  rightHide*/
+        #content > .list > .home .home1 > li.leftShow{ visibility: visible;animation:1s leftShow 1 linear;}
+        #content > .list > .home .home1 > li.rightHide{visibility: hidden;animation:1s rightHide 1 linear;}
+        @keyframes leftShow{
+            0%{visibility: hidden;transform: translateZ(-200px);}
+            50%{transform: translateX(-40%) rotateY(30deg) scale(.8);}
+            100%{}
+        }
+        @keyframes rightHide{
+            0%{visibility: visible;}
+            50%{transform: translateX(40%) rotateY(-30deg) scale(.8);}
+            100%{transform: translateZ(-200px);}
+        }
+
+        /*侧边小圆点*/
+        #content > .list > .home .home3{position: fixed;top: 50%;right: 10px;z-index: 99;}
+        #content > .list > .home .home3>li{margin-top:2px;width: 15px;height: 15px;border-radius: 50%;border: 2px solid rgba(25,25,25,.6);}
+        #content > .list > .home .home3>li.active{background: #FFFFFF;}
+        /*侧边小圆点结束*/
+        /*第一屏结束*/
+
+        /*第五屏开始*/
+        #content .list > .team{background: url(img/bg5.jpg) no-repeat;}
+        #content .list > .team .team1{width: 400px;height: 400px;float: left;}
+        #content .list > .team .team2{width: 400px;height: 400px;float: right;}
+        #content .list > .team .team3{width: 944px;height: 448px;position: absolute; left: 50%;margin-left: -472px;top: 250px;
+        }
+        #content .list > .team .team3>ul{position: relative; height: 100%;}
+        #content .list > .team .team3>ul>li{width: 118px;height: 100%;background: url("img/team.png") no-repeat;float: left; transition: 1s opacity;}
+        #content .list > .team .team3>ul>li:nth-child(1){background-position: 0 0;}
+        #content > .list > .team .team3 ul>li:nth-child(2){background-position:-118px,0;}
+        #content > .list > .team .team3 ul>li:nth-child(3){background-position:-236px,0;}
+        #content > .list > .team .team3 ul>li:nth-child(4){background-position:-354px,0;}
+        #content > .list > .team .team3 ul>li:nth-child(5){background-position:-472px,0;}
+        #content > .list > .team .team3 ul>li:nth-child(6){background-position:-590px,0;}
+        #content > .list > .team .team3 ul>li:nth-child(7){background-position:-708px,0;}
+        #content > .list > .team .team3 ul>li:nth-child(8){background-position:-826px,0;}
+        #content > .list > .team canvas{position: absolute; top: 0;}
+        /*第五屏结束*/
+
+        /*第四屏样式开始*/
+        #content .list > .about{background: url(img/bg4.jpg) no-repeat;overflow: hidden;}
+        #content .list > .about .about1{margin: 50px 0 100px 50px;}
+        #content .list > .about .about2{margin-left: 50px; width: 400px;}
+        #content .list > .about .about4{width: 357px;height: 998px;position: absolute;left:50%;top:-100px;background: url(img/greenLine.png) no-repeat;}
+        #content .list > .about .about3 .item{width: 260px;height: 200px;border: 5px solid rgba(255,255,255,0.5);border-radius: 8px; position: absolute;z-index: 2;overflow: hidden;}
+        #content .list > .about .about3 .item:nth-child(1){left: 750px; top: 50px;}
+        #content .list > .about .about3 .item:nth-child(2){left: 600px; top: 290px;}
+        #content .list > .about .about3 .item>span,#content .list > .about .about3 .item{position: absolute;left: 0;top: 0;bottom: 0;right: 0;}
+        #content .list > .about .about3 .item:nth-child(1) >span{background: url(img/about2.jpg) no-repeat;transform: scale(1.5);
+            transition:1s transform;}
+        #content .list > .about .about3 .item:nth-child(2) >span{background: url(img/about4.jpg) no-repeat;transform: scale(1.5);
+            transition:1s transform;}
+        #content .list > .about .about3 .item span:hover{transform: scale(1);}
+        #content .list > .about .about3 .item ul{height: 100%;}
+        #content .list > .about .about3 .item ul li{float: left;position: relative;overflow: hidden; }
+        #content .list > .about .about3 .item ul li>img{position: absolute;transition: 1s top,1s left;}
+        /*第四屏结束*/
+
+        /*第三屏开始*/
+        #content .list > .works{background: url(img/bg3.jpg) no-repeat;}
+        #content .list > .works .works1{margin: 50px 0 100px 50px;position: relative;z-index: 2;}
+        #content .list > .works .works2{margin-left: 50px;position: relative;z-index: 2;}
+        #content .list > .works .works2>.item{float: left;width: 220px;height: 133px;margin: 0 1px;
+            position: relative;overflow: hidden;}
+        #content .list > .works .works2>.item:last-of-type{width: 332px;}
+        #content .list > .works .works2>.item .mask{position: absolute;left: 0;top: 0;bottom: 0;right: 0;box-sizing: border-box;padding: 10px;background: #000000;opacity:0;
+            color: white;transition:1s opacity;}
+        #content .list > .works .works2>.item .mask .icon{width: 32px;height: 34px;margin-top: 10px;
+            background: url(img/zoomico.png) no-repeat;transition:1s background-position;}
+        #content > .list > .works  .works2 > .item img{transition:1s transform;}
+        #content .list > .works .works2>.item .mask .icon:hover{background-position: 0 -35px;}
+        #content .list > .works .works2>.item:hover .mask{opacity: 0.8;}
+        #content > .list > .works  .works2 > .item:hover img{transform: rotate(20deg) scale(1.3);}
+        #content .list > .works .works3{width: 167px;height: 191px;background: url("img/robot.png") no-repeat; position: absolute;left: 900px; top: 170px; animation: works3Move 4s linear infinite;}
+        @keyframes works3Move {
+            0%{
+                transform: translateX(0px) rotateY(0deg) ;
+            }
+            49%{
+                transform: translateX(-400px) rotateY(0deg) ;
+            }
+            50%{
+                transform: translateX(-410px) rotateY(180deg);
+            }
+            100%{
+                transform: translateX(0px) rotateY(180deg);
+            }
+        }
+        /*第三屏结束*/
+        /*第二屏开始*/
+        #content .list > .course{background: url(img/bg2.jpg) no-repeat;}
+        #content > .list > .course{background: url(img/bg2.jpg) no-repeat;}
+        #content > .list > .course .course1{margin: 50px;position: relative;z-index:2;}
+        #content > .list > .course .course2{margin-left: 50px;width: 400px;position: relative;z-index:2;}
+        #content > .list > .course .course3{width: 480px;position: absolute;z-index:2;right:50px ;top: 70px;}
+
+        #content > .list > .course .course3 .line{position: absolute;top:-7px;width: 9px;height: 410px;
+            background: url(img/plus_row.png) no-repeat;}
+
+        #content > .list > .course .course3 .line:nth-of-type(1){left: -5px;}
+        #content > .list > .course .course3 .line:nth-of-type(2){left: 115px;}
+        #content > .list > .course .course3 .line:nth-of-type(3){left: 235px;}
+        #content > .list > .course .course3 .line:nth-of-type(4){left: 355px;}
+        #content > .list > .course .course3 .line:nth-of-type(5){left: 475px;}
+
+        #content > .list > .course .course3 .item {float: left;width: 120px;height: 132px;position: relative;
+            perspective: 500px;transform-style: preserve-3d;
+        }
+        #content > .list > .course .course3 .item .face,#content > .list > .course .course3 .item .backFace
+        {position: absolute;left: 0;top: 0;width: 100%;height: 100%;box-sizing: border-box;padding: 15px;
+            transition:1s transform;
+        }
+
+        #content > .list > .course .course3 .item .backFace{background-position: 50% 50%!important;}
+        #content > .list > .course .course3 .item:nth-of-type(1) .backFace{background: url(img/apcoa.png) no-repeat;}
+        #content > .list > .course .course3 .item:nth-of-type(2) .backFace{background: url(img/binoli.png) no-repeat;}
+        #content > .list > .course .course3 .item:nth-of-type(3) .backFace{background: url(img/bks.png) no-repeat;}
+        #content > .list > .course .course3 .item:nth-of-type(4) .backFace{background: url(img/gu.png) no-repeat;}
+        #content > .list > .course .course3 .item:nth-of-type(5) .backFace{background: url(img/hlx.png) no-repeat;}
+        #content > .list > .course .course3 .item:nth-of-type(6) .backFace{background: url(img/lbs.png) no-repeat;}
+        #content > .list > .course .course3 .item:nth-of-type(7) .backFace{background: url(img/leonberg.png) no-repeat;}
+        #content > .list > .course .course3 .item:nth-of-type(8) .backFace{background: url(img/pcwelt.png) no-repeat;}
+        #content > .list > .course .course3 .item:nth-of-type(9) .backFace{background: url(img/tata.png) no-repeat;}
+        #content > .list > .course .course3 .item:nth-of-type(10) .backFace{background: url(img/gu.png) no-repeat;}
+        #content > .list > .course .course3 .item:nth-of-type(11) .backFace{background: url(img/lbs.png) no-repeat;}
+        #content > .list > .course .course3 .item:nth-of-type(12) .backFace{background: url(img/bks.png) no-repeat;}
+        #content > .list > .course .course3 .item .face{transform: rotateY(180deg);backface-visibility: hidden;
+            background: #009ee0;color: white;
+        }
+
+        #content > .list > .course .course3 .item:hover .face{transform: rotateY(360deg);}
+        #content > .list > .course .course3 .item:hover .backFace{transform: rotateY(180deg);}
+        /*第二屏结束*/
+        /*内容区样式结束*/
+
+       /*音频*/
+        #warp>.head>.headMain>.music{width:14px;height: 14px;background: url("img/musicon.gif") no-repeat;float: left;margin: 50px 0 0 5px; }
+        /*音频结束*/
+       /*开机动画*/
+        #warp{width: 100%;height: 100%;}
+        #warp >.mask{width: 100%;height: 100%;position: absolute;}
+        #warp >.mask div{transition: 2s height;}
+        #warp >.mask .up{width: 100%;height: 50%;background: deepskyblue;position: absolute;z-index: 100;}
+        #warp >.mask .down{width: 100%;height: 50%;background: deepskyblue;position: absolute;bottom:0;z-index: 100;}
+        #warp >.mask .line{/*border-radius:5px;*/ width: 0;height: 5px;background: white;position: absolute;left: 0;top: 50%;margin-top: -4px;z-index: 101;transition: 1s width;}
+        /*开机动画结束*/
+        /*出入场动画*/
+        #content > .list > .home .home1,#content > .list > .home .home2{transition:1s transform,1s opacity;}
+        #content  .course .plane1{ width:359px; height:283px; background:url(img/plane1.png) no-repeat; position:absolute; left:300px; top:-100px; transition:1s;}
+        #content  .course .plane2{ width:309px; height:249px; background:url(img/plane2.png) no-repeat; position:absolute; left:-100px; top:200px; transition:1s;}
+        #content  .course .plane3{ width:230px; height:182px; background:url(img/plane3.png) no-repeat; position:absolute; left:300px; top:400px; transition:1s;}
+        #content  .works .pencel1{ width:180px; height:97px; background:url(img/pencel1.png) no-repeat; position:absolute; transition:1s; left:500px; top:0;}
+        #content  .works .pencel2{ width:268px; height:38px; background:url(img/pencel2.png) no-repeat; position:absolute; transition:1s; left:300px; top:250px;}
+        #content  .works .pencel3{ width:441px; height:231px; background:url(img/pencel3.png) no-repeat; position:absolute; transition:1s; left:650px; top:300px;}
+        #content > .list > .about .about3 > .item,#content > .list > .team .team1,#content > .list > .team .team2 {transition:1s transform;}
+        /*出入场动画结束*/
+
+    </style>
+</head>
+<body>
+<section id="warp">
+    <div class="mask">
+        <div class="up"></div>
+        <div class="down"></div>
+        <span class="line"></span>
+    </div>
+    <header class="head">
+        <div class="headMain">
+            <h1 class="logo">
+                <a href="javascript:;">
+                    <img src="img/logo.png" alt="">
+                </a>
+            </h1>
+            <div class="music">
+                <audio src="this is hero.mp3" loop></audio>
+            </div>
+            <nav class="nav">
+                <ul class="list clearfix">
+                    <li>
+                        <a href="javascript:;">
+                           <div class="up"><img src="img/home_gruen.png" alt=""></div>
+                            <div class="down"><img src="img/home.png" alt=""></div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:;">
+                            <div class="up">Course</div>
+                            <div class="down">Course</div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:;">
+                            <div class="up">Works</div>
+                            <div class="down">Works</div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:;">
+                            <div class="up">About</div>
+                            <div class="down">About</div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:;">
+                            <div class="up">Team</div>
+                            <div class="down">Team</div>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            <div class="arrow"></div>
+        </div>
+    </header>
+    <section id="content">
+        <ul class="list">
+            <li class="home">
+                <section>
+                    <ul class="home1">
+                        <li class="commonTitle active">
+                            <div class="item">one layer</div>
+                        </li>
+                        <li class="commonTitle">
+                            <div class="item">two layer</div>
+                        </li>
+                        <li class="commonTitle">
+                            <div class="item">three layer</div>
+                        </li>
+                        <li class="commonTitle">
+                            <div class="item">four layer</div>
+                        </li>
+                    </ul>
+                    <ul class="home2">
+                        <li class="active"></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                    </ul>
+                    <ul class="home3">
+                        <li class="active"></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                    </ul>
+                </section>
+            </li>
+            <li class="course">
+                <header class="course1 commonTitle">
+                    <span>EINIGE</span>  <br />
+                    <span>UNSERER</span> <br />
+                    <span>KUNDEN</span>  <br />
+                </header>
+                <div class="course2 commonText">
+                    <p>
+                        Das Kundenvertrauen in unsere Kompetenz ist die notwendige Basis einer erfolgreichen Zusammenarbeit, gleichzeitig aber auch das größte Lob, das man uns entgegenbringen kann.
+                        <br />
+                        Diese und viele weitere große und kleine Kunden vertrauen uns seit Jahren, was uns stolz macht, und dafür sagen wir an dieser Stelle einfach mal.
+                    </p>
+                </div>
+                <div class="course3">
+                    <span class="line"></span>
+                    <span class="line"></span>
+                    <span class="line"></span>
+                    <span class="line"></span>
+                    <span class="line"></span>
+                    <div class="item">
+                        <!--记一次3d坑爹之旅-->
+                        <!--
+                            谁在上面？
+                                backFace在上面
+                            谁在下面？
+                                face在下面
+                            有没有3D舞台？
+                                有3D舞台就有纵深
+                                初始化的时候：
+                                    .face{transform: rotateY(180deg);backface-visibility: hidden;}
+                                    就应该看到backFace（有背景的那一面）
+                                旋转的时候
+                                    .face{transform: rotateY(360deg);backface-visibility: hidden;}
+                                    .backFace{transform: rotateY(180deg);}
+                                    在定位流里;3D舞台不影响最终层级。
+                                    应该看到backFace（有背景的那一面的背面）
+
+
+                            chrome中有bug：3D视图更新不准确，内部模型准确
+                            火狐内部渲染完全符合w3c规范，渲染准确
+                        -->
+                        <div class="face">锄禾日当午</div>
+                        <div class="backFace"></div>
+                    </div>
+                    <div class="item">
+                        <div class="backFace"></div>
+                        <div class="face" >锄禾日当午</div>
+                    </div>
+                    <div class="item">
+                        <div class="backFace"></div>
+                        <div class="face">锄禾日当午</div>
+                    </div>
+                    <div class="item">
+                        <div class="backFace"></div>
+                        <div class="face">锄禾日当午</div>
+                    </div>
+                    <div class="item">
+                        <div class="backFace"></div>
+                        <div class="face">锄禾日当午</div>
+                    </div>
+                    <div class="item">
+                        <div class="backFace"></div>
+                        <div class="face">锄禾日当午</div>
+                    </div>
+                    <div class="item">
+                        <div class="backFace"></div>
+                        <div class="face">锄禾日当午</div>
+                    </div>
+                    <div class="item">
+                        <div class="backFace"></div>
+                        <div class="face">锄禾日当午</div>
+                    </div>
+                    <div class="item">
+                        <div class="backFace"></div>
+                        <div class="face">锄禾日当午</div>
+                    </div>
+                    <div class="item">
+                        <div class="backFace"></div>
+                        <div class="face">锄禾日当午</div>
+                    </div>
+                    <div class="item">
+                        <div class="backFace"></div>
+                        <div class="face">锄禾日当午</div>
+                    </div>
+                    <div class="item">
+                        <div class="backFace"></div>
+                        <div class="face">锄禾日当午</div>
+                    </div>
+                </div>
+                <section>
+                    <div class="plane1"></div>
+                    <div class="plane2"></div>
+                    <div class="plane3"></div>
+                </section>
+            </li>
+            <li class="works">
+                <section>
+                    <header class="works1 commonTitle">
+                        <span>EINBLICK </span> <br>
+                        <span>ERKENNTNIS </span> <br>
+                        <span>ERGEBNIS	</span> <br>
+                    </header>
+                    <div class="works2">
+                         <div class="item">
+                             <img src="img/worksimg1.jpg" alt="">
+                             <div class="mask">
+                                 <span>锄禾日当午</span>
+                                 <div class="icon"></div>
+                             </div>
+                         </div>
+                        <div class="item">
+                            <img src="img/worksimg2.jpg" alt="">
+                            <div class="mask">
+                                <span>汗滴禾下土</span>
+                                <div class="icon"></div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <img src="img/worksimg3.jpg" alt="">
+                            <div class="mask">
+                                <span>谁知盘中餐</span>
+                                <div class="icon"></div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <img src="img/worksimg4.jpg" alt="">
+                            <div class="mask">
+                                <span>粒粒皆辛苦</span>
+                                <div class="icon"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="works3"></div>
+                    <div class="pencel1"></div>
+                    <div class="pencel2"></div>
+                    <div class="pencel3"></div>
+                </section>
+            </li>
+            <li class="about">
+                <section>
+                    <header class="about1 commonTitle">
+                        <span>DIE </span> <br>
+                        <span>SPEZIELLE</span> <br>
+                        <span>VIELFALT </span> <br>
+                    </header>
+                    <div class="about2 commonText">
+                        <p>Der bunte Medienmix ist die Faszination die uns antreibt und das, was man an uns schätzt. Von A bis Z und von vorne bis hinten nehmen wir Ihr Projekt unter unsere Fittiche und lassen es zu etwas Großartigem heranwachsen.</p>
+                    </div>
+                    <div class="about3">
+                        <div class="item">
+                            <span></span>
+                            <ul data-src="img/about1.jpg" class="clearfix"></ul>
+                        </div>
+                        <div class="item">
+                            <span></span>
+                            <ul data-src="img/about3.jpg" class="clearfix"></ul>
+                        </div>
+                    </div>
+                    <div class="about4"></div>
+                </section>
+            </li>
+            <li class="team">
+                <section>
+                    <header class="team1 commonTitle">
+                        <span>WIR SIND</span> <br>
+                        <span>VOXELAIR </span> <br>
+                    </header>
+                    <div class="team2">
+                        <p class="commonText">Wir sind seit 2002 eine Full-Service-Werbeagentur mit Stammsitz in Heimsheim, zwischen Stuttgart und Karlsruhe. </p>
+                        <p class="commonText">	Über 60 Jahre Erfahrung vereinen das gesamte VoxelAir-Team. Dabei hat jedes Voxel neben professionellem Allroundwissen auch sein ganz spezielles Gebiet, um selbst die individuellsten Kundenwünsche schnell und kompetent umzusetzen.</p>
+                    </div>
+                    <div class="team3">
+                        <ul>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                        </ul>
+                    </div>
+                </section>
+            </li>
+        </ul>
+    </section>
+</section>
+</body>
+<script>
+    window.onload=function () {
+        var head = document.querySelector(".head");
+        var content = document.querySelector("#content");
+        var cLiNodes = document.querySelectorAll("#content .list>li");
+        var cList = document.querySelector("#content>.list");
+        /*第一屏*/
+        var home2LiNodes = document.querySelectorAll("#content>.list > .home .home2>li");
+        var home1LiNodes = document.querySelectorAll("#content>.list > .home .home1>li");
+        var oldIndex = 0;
+        var timer3D = 0;
+        var autoIndex1 = 0;
+        var home1Node = document.querySelector("#content>.list > .home .home1");
+        var musicNode = document.querySelector(" #warp>.head>.headMain>.music");
+        var audioNode = document.querySelector(" #warp>.head>.headMain>.music audio");
+
+        var arrowNode = document.querySelector("#warp>.head .headMain>.arrow");
+        var liNodes = document.querySelectorAll("#warp>.head .headMain>.nav>.list>li");
+        var upNodes = document.querySelectorAll("#warp>.head .headMain>.nav>.list>li .up");
+        var firstLi = liNodes[0];
+        var firstUp = firstLi.querySelector(".up");
+
+        var team3Node = document.querySelector("#content .list > .team .team3");
+        var teamLis = document.querySelectorAll(" #content .list > .team .team3>ul>li");
+
+        var aboutUl = document.querySelectorAll("#content .list > .about .about3 .item ul");
+        var aboutLiNum = 4;
+
+        var home3Lis = document.querySelectorAll("#content > .list > .home .home3>li");
+
+        var now = 0;
+        var timer = 0;
+        /*开机动画*/
+        var mask = document.querySelector("#warp >.mask");
+        var line = document.querySelector("#warp >.mask .line");
+        var maskDiv = document.querySelectorAll("#warp >.mask div")
+        loadingAn();
+        function loadingAn(){
+        	var arr = ['bg1.jpg','bg2.jpg','bg3.jpg','bg4.jpg','bg5.jpg','about1.jpg','about2.jpg','about3.jpg','about4.jpg','worksimg1.jpg','worksimg2.jpg','worksimg3.jpg','worksimg4.jpg','team.png','greenLine.png'];
+            var flag = 0;
+        	for(var i=0;i<arr.length;i++){
+        		var img =new Image();
+        		img.src="img/"+arr[i];
+        		img.onload=function(){
+        			flag++
+        			line.style.width=flag/arr.length*100+"%";
+        		}
+        	}
+        	line.addEventListener("transitionend",function(){
+        		if(flag == arr.length){
+        			for(var i=0;i<maskDiv.length;i++){
+        				maskDiv[i].style.height=0+"px";
+        			}
+        		     this.style.display="none";
+        		}
+        	})
+        	maskDiv[0].addEventListener("transitionend",function(){
+        		mask.remove()
+        		audioNode.play()
+        		home3D()
+        	})
+        }
+        /*开机动画结束*/
+       /*出入场动画*/
+        var preIndex =0;
+           var  anArr=[
+               {
+                   inAn:function () {
+                       var home1 = document.querySelector(" #content > .list > .home .home1");
+                       var home2 = document.querySelector(" #content > .list > .home .home2");
+                       home1.style.transform="translateY(0px)";
+                       home2.style.transform="translateY(0px)";
+                       home1.style.opacity=1;
+                       home2.style.opacity=1;
+                   },
+                   outAn:function () {
+                       var home1 = document.querySelector(" #content > .list > .home .home1");
+                       var home2 = document.querySelector(" #content > .list > .home .home2");
+                       home1.style.transform="translateY(-400px)";
+                       home2.style.transform="translateY(100px)";
+                       home1.style.opacity=0;
+                       home2.style.opacity=0;
+                   }
+               },
+               {
+                   inAn:function () {
+                       var plane1 = document.querySelector("#content  .course .plane1");
+                       var plane2 = document.querySelector("#content  .course .plane2");
+                       var plane3 = document.querySelector("#content  .course .plane3");
+                       plane1.style.transform = "translate(0px,0px)";
+                       plane2.style.transform = "translate(0px,0px)";
+                       plane3.style.transform = "translate(0px,0px)";
+                   },
+                   outAn:function () {
+                       var plane1 = document.querySelector("#content  .course .plane1");
+                       var plane2 = document.querySelector("#content  .course .plane2");
+                       var plane3 = document.querySelector("#content  .course .plane3");
+                       plane1.style.transform = "translate(-200px,-200px)";
+                       plane2.style.transform = "translate(-200px,200px)";
+                       plane3.style.transform = "translate(200px,-200px)";
+                   }
+               },
+               {
+                   inAn:function() {
+                       var pencel1 = document.querySelector("#content  .works .pencel1");
+                       var pencel2 = document.querySelector("#content  .works .pencel2");
+                       var pencel3 = document.querySelector("#content  .works .pencel3");
+
+                       pencel1.style.transform = "translateY(0px)";
+                       pencel2.style.transform = "translateY(0px)";
+                       pencel3.style.transform = "translateY(0px)";
+                   },
+                   outAn:function () {
+                       var pencel1 = document.querySelector("#content  .works .pencel1");
+                       var pencel2 = document.querySelector("#content  .works .pencel2");
+                       var pencel3 = document.querySelector("#content  .works .pencel3");
+
+                       pencel1.style.transform = "translateY(-100px)";
+                       pencel2.style.transform = "translateY(100px)";
+                       pencel3.style.transform = "translateY(1000px)";
+                   }
+               },
+               {
+                   inAn:function () {
+                       var Rect1 = document.querySelector("#content > .list > .about .about3 > .item:nth-child(1)");
+                       var Rect2 = document.querySelector("#content > .list > .about .about3 > .item:nth-child(2)");
+
+                       Rect1.style.transform = "rotate(0deg)";
+                       Rect2.style.transform = "rotate(0deg)";
+                   },
+                   outAn:function(){
+                       var Rect1 = document.querySelector("#content > .list > .about .about3 > .item:nth-child(1)");
+                       var Rect2 = document.querySelector("#content > .list > .about .about3 > .item:nth-child(2)");
+
+                       Rect1.style.transform = "rotate(45deg)";
+                       Rect2.style.transform = "rotate(-45deg)";
+
+                   }
+               },
+               {
+                   inAn:function () {
+                       var Rect1 = document.querySelector("#content > .list > .team .team1");
+                       var Rect2 = document.querySelector("#content > .list > .team .team2");
+
+                       Rect1.style.transform = "translateX(0px)";
+                       Rect2.style.transform = "translateX(0px)";
+                   },
+                   outAn:function () {
+                       var Rect1 = document.querySelector("#content > .list > .team .team1");
+                       var Rect2 = document.querySelector("#content > .list > .team .team2");
+
+                       Rect1.style.transform = "translateX(-200px)";
+                       Rect2.style.transform = "translateX(200px)";
+                   }
+               }
+           ];
+           for(var i=0;i<anArr.length;i++){
+               anArr[i]["outAn"]();
+           }
+           setTimeout(function () {
+              anArr[0].inAn();
+           },2000);
+        /*出入场动画结束*/
+        /*侧边栏小圆点结束*/
+        /*第四屏开始*/
+         picBoom();
+         function picBoom() {
+             for(var i=0;i<aboutUl.length;i++){
+                 changed(aboutUl[i]);
+             }
+             function changed(ul) {
+                 var src = ul.dataset.src;
+                 var w = ul.offsetWidth/2;
+                 var h = ul.offsetHeight/2;
+                 console.log(h)
+                 for(var i=0;i<aboutLiNum;i++){
+                     var liNode = document.createElement("li");
+                     liNode.style.width = w+"px";
+                     liNode.style.height= h+"px";
+                     var imgNode =document.createElement("img");
+                     imgNode.style.left=-(i%2)*w+"px";
+                     imgNode.style.top= -Math.floor(i/2)*h+"px";
+                     imgNode.src=src;
+
+                     liNode.appendChild(imgNode);
+                     ul.appendChild(liNode);
+                 }
+                 ul.onmouseenter=function () {
+                     var imgNodes =this.querySelectorAll("li>img");
+                     imgNodes[0].style.top=h+"px";
+                     imgNodes[1].style.left=-2*w+"px";
+                     imgNodes[2].style.left=w+"px";
+                     imgNodes[3].style.top=-2*h+"px";
+                 }
+                 ul.onmouseleave=function(){
+                     var imgNodes = this.querySelectorAll("li>img");
+                     imgNodes[0].style.top = 0+"px";
+                     imgNodes[1].style.left = -w+"px";
+                     imgNodes[2].style.left = 0+"px";
+                     imgNodes[3].style.top = -h+"px";
+                 }
+             }
+
+         }
+        /*第四屏结束*/
+       /*第五屏开始*/
+        bubble();
+        /*
+        先抽象一个气泡函数并立即执行一次
+        先给每个li绑定鼠标移入事件，移入时所有li的opacity统一置成0.5，this.li的opacity设置为1；
+        同时调用addCanvas函数，并将canvas的offsetleft设置为和li一样；
+        addCanvas函数：canvas.offsetwidth与li的offsetwidth统一高也一致，team3Node.appendChild(oc);然后调用气泡函数
+        需要注意的是因为canvas是盖在li上的所以，onmouseleave事件要绑定给canvas。
+        onmouseleave回调函数中要销毁canvasNode而且要把canvas重置为null以便使其不会影响后续逻辑，而且要清除定时器
+         */
+        function bubble() {
+            var oc = null;
+            var time1 = 0;
+            var time2 =0;
+            for(var i=0;i<teamLis.length;i++) {
+                teamLis[i].onmouseenter = function () {
+                    for (var i = 0; i < teamLis.length; i++) {
+                        teamLis[i].style.opacity = .5;
+                    }
+                    this.style.opacity = 1;
+                    addCanvas();
+                    oc.style.left = this.offsetLeft + "px";
+                }
+            }
+            function addCanvas() {
+                if(!oc){
+                    oc = document.createElement("canvas");
+                    oc.width = teamLis[1].offsetWidth;
+                    oc.height = teamLis[1].offsetHeight;
+                    oc.onmouseleave=function () {
+                        for(var i=0;i<teamLis.length;i++){
+                            teamLis[i].style.opacity=1;
+                        }
+                        removeCanvas();
+                    };
+                    team3Node.appendChild(oc);
+                    QiPao();
+                }
+            }
+            function removeCanvas() {
+                oc.remove();
+                oc=null;
+                clearInterval(time1);
+                clearInterval(time2);
+            }
+            function QiPao(){
+                if(oc.getContext){
+                    var ctx = oc.getContext("2d");
+                    var arr=[];
+                    //将数组中的圆绘制到画布上
+                    time1=setInterval(function(){
+                        ctx.clearRect(0,0,oc.width,oc.height);
+                        //动画
+                        for(var i=0;i<arr.length;i++){
+                            arr[i].deg+=10;
+                            arr[i].x = arr[i].startX +  Math.sin( arr[i].deg*Math.PI/180 )*arr[i].step*2;
+                            arr[i].y = arr[i].startY - (arr[i].deg*Math.PI/180)*arr[i].step ;
+
+                            if(arr[i].y <=50){
+                                arr.splice(i,1)
+                            }
+                        }
+                        //绘制
+                        for(var i=0;i<arr.length;i++){
+                            ctx.save();
+                            ctx.fillStyle="rgba("+arr[i].red+","+arr[i].green+","+arr[i].blue+","+arr[i].alp+")";
+                            ctx.beginPath();
+                            ctx.arc(arr[i].x,arr[i].y,arr[i].r,0,2*Math.PI);
+                            ctx.fill();
+                            ctx.restore();
+                        }
+                    },1000/60)
+
+                    //往arr中注入随机圆的信息
+                    time2=setInterval(function(){
+                        var r =Math.random()*6+2;
+                        var x = Math.random()*oc.width;
+                        var y = oc.height - r;
+                        var red =   Math.round(Math.random()*255);
+                        var green = Math.round(Math.random()*255);
+                        var blue =  Math.round(Math.random()*255);
+                        var alp = 1;
+
+
+                        var deg =0;
+                        var startX = x;
+                        var startY = y;
+                        //曲线的运动形式
+                        var step =Math.random()*20+10;
+                        arr.push({
+                            x:x,
+                            y:y,
+                            r:r,
+                            red:red,
+                            green:green,
+                            blue:blue,
+                            alp:alp,
+                            deg:deg,
+                            startX:startX,
+                            startY:startY,
+                            step:step
+                        })
+                    },50)
+                }
+            }
+        }
+       /*第五屏结束*/
+        /*播放器开始*/
+        musicNode.onclick=function () {
+           if(audioNode.paused){
+               audioNode.play();
+               musicNode.style.background = "url(img/musicon.gif)";
+           }else{
+               audioNode.pause();
+               musicNode.style.background = "url(img/musicoff.gif)";
+           }
+        }
+        /*播放器结束*/
+   
+        function home3D() {
+            for (var i = 0; i < home2LiNodes.length; i++) {
+                home2LiNodes[i].index = i;
+                home2LiNodes[i].onclick = function () {
+                    clearInterval(timer3D);
+                    for (var i = 0; i < home2LiNodes.length; i++) {
+                        home2LiNodes[i].classList.remove("active");
+                    }
+                    /*classList L要大写！！！*/
+                    this.classList.add("active");
+                    if (this.index > oldIndex) {
+                        home1LiNodes[this.index].classList.remove("leftShow");
+                        home1LiNodes[this.index].classList.remove("leftHide");
+                        home1LiNodes[this.index].classList.remove("rightHide");
+                        home1LiNodes[this.index].classList.add("rightShow");
+
+
+                        home1LiNodes[oldIndex].classList.remove("leftShow");
+                        home1LiNodes[oldIndex].classList.remove("rightShow");
+                        home1LiNodes[oldIndex].classList.remove("rightHide");
+                        home1LiNodes[oldIndex].classList.add("leftHide");
+                    }
+
+                    if (this.index < oldIndex) {
+                        home1LiNodes[this.index].classList.remove("rightShow");
+                        home1LiNodes[this.index].classList.remove("leftHide");
+                        home1LiNodes[this.index].classList.remove("rightHide");
+                        home1LiNodes[this.index].classList.add("leftShow");
+
+
+                        home1LiNodes[oldIndex].classList.remove("leftShow");
+                        home1LiNodes[oldIndex].classList.remove("rightShow");
+                        home1LiNodes[oldIndex].classList.remove("leftHide");
+                        home1LiNodes[oldIndex].classList.add("rightHide");
+                    }
+                    /*此时点击的页面下标是自动轮播开始的下标，也是手动轮播的上一次的下标*/
+                    oldIndex = this.index;
+                    autoIndex1 = this.index;
+                }
+            }
+
+
+            move3D();
+            function move3D() {
+                clearInterval(timer3D);
+                timer3D = setInterval(function(){
+                    autoIndex1++;
+
+                    if(autoIndex1 == home1LiNodes.length ){
+                        autoIndex1=0;
+                    }
+                    for(var i=0;i<home2LiNodes.length;i++){
+                        home2LiNodes[i].classList.remove("active");
+                    }
+                    home2LiNodes[autoIndex1].classList.add("active");
+                    /!*自动轮播方向为从左向右，即：lefthide rightshow逻辑*!/
+                    home1LiNodes[autoIndex1].classList.remove("leftShow");
+                    home1LiNodes[autoIndex1].classList.remove("leftHide");
+                    home1LiNodes[autoIndex1].classList.remove("rightHide");
+                    home1LiNodes[autoIndex1].classList.add("rightShow");
+
+
+                    home1LiNodes[oldIndex].classList.remove("leftShow");
+                    home1LiNodes[oldIndex].classList.remove("rightShow");
+                    home1LiNodes[oldIndex].classList.remove("rightHide");
+                    home1LiNodes[oldIndex].classList.add("leftHide");
+                    /!*自动轮播的下标为手动轮播的上一张索引*!/
+                    oldIndex = autoIndex1;
+                },2000)
+            }
+
+            home1Node.onmouseenter=function () {
+                clearInterval(timer3D);
+            };
+            home1Node.onmouseleave=function () {
+                move3D();
+            };
+        }
+        /*第一屏结束*/
+        /*內容區域交互開始*/
+        window.onresize=function () {
+            contentBind();
+            cList.style.top = -now*(document.documentElement.clientHeight-head.offsetHeight+"px");
+            arrowNode.style.left = liNodes[now].offsetLeft+liNodes[now].offsetWidth/2 -arrowNode.offsetWidth/2+"px";
+        };
+        if(content.addEventListener){
+            content.addEventListener("DOMMouseScroll",function (ev) {
+             ev = ev||event;
+             clearTimeout(timer);
+             timer = setTimeout(function () {
+                 fn(ev);
+             },200)
+            })
+        }
+        content.onmousewheel=function (ev) {
+            ev=ev||event;
+            clearTimeout(timer);
+            timer = setTimeout(function () {
+                fn(ev);
+            },200)
+        }
+        function fn(ev) {
+            ev = ev||event;
+            var dir="";
+            if(ev.wheelDelta){
+                dir = ev.wheelDelta>0?"up":"down";
+            }else if(ev.detail){
+                dir = ev.detail<0?"up":"down";
+            }
+            preIndex = now;
+            switch (dir){
+                case "up":
+                if(now>0){
+                    now--;
+                    move(now);
+                }
+                break;
+                case "down":
+                    if(now<cLiNodes.length-1){
+                        now++;
+                        move(now);
+                    }
+                    break;
+            }
+        }
+        contentBind();
+        function contentBind() {
+            content.style.height = document.documentElement.clientHeight-head.offsetHeight+"px";
+            for(var i=0;i<cLiNodes.length;i++){
+                cLiNodes[i].style.height = document.documentElement.clientHeight-head.offsetHeight+"px";
+            }
+        }
+       /*內容區交互結束*/
+
+       /*头部交互开始*/
+       firstUp.style.width="100%";
+       arrowNode.style.left=firstLi.offsetLeft+firstLi.offsetWidth/2-arrowNode.offsetWidth/2+"px";
+        headBind();
+        function headBind() {
+            for (var i = 0; i < liNodes.length; i++) {
+                liNodes[i].index = i;
+                liNodes[i].onclick = function () {
+                    preIndex = now;
+                    console.log(now)
+                    move(this.index);
+                    now =this.index;
+                }
+            }
+            for(var i=0;i<home3Lis.length;i++){
+                //转绑很重要
+                home3Lis[i].index = i;
+                home3Lis[i].onclick=function(){
+                    //i:liNodes.length 5
+                    preIndex =now;
+                    move(this.index);
+                    now = this.index;
+                }
+            }
+        }
+
+       /* move(1)*/
+        function move(index) {
+            for (var i = 0; i < upNodes.length; i++) {
+                upNodes[i].style.width = "";
+            }
+            upNodes[index].style.width = "100%";
+            arrowNode.style.left = liNodes[index].offsetLeft + liNodes[index].offsetWidth / 2 - arrowNode.offsetWidth / 2 + "px";
+            cList.style.top = -index*(document.documentElement.clientHeight - head.offsetHeight)+"px";
+           /*
+           * 鼠标滑动同步侧边栏小圆点逻辑
+           * */
+            for(var i=0;i<home3Lis.length;i++){
+                home3Lis[i].className="";
+        }
+            home3Lis[index].className="active";
+
+
+            if(anArr[index]&&typeof anArr[index]["inAn"] === "function" ){
+                anArr[index]["inAn"]();
+            }
+            if(anArr[preIndex]&&typeof anArr[preIndex]["outAn"] === "function" ){
+                anArr[preIndex]["outAn"]();
+            }
+        }
+        /*头部交互结束*/
+
+
+    }
+</script>
+</html>
